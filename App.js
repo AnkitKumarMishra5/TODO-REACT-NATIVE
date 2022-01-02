@@ -1,8 +1,22 @@
 import { Platform } from "expo-modules-core";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from "react-native";
 import Task from "./components/Task";
+import { useState } from "react";
 
 export default function App() {
+  const [task, setTask] = useState('abc');
+
+  const handleAddTask = () => {
+    console.log();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
@@ -16,8 +30,13 @@ export default function App() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}
       >
-        <TextInput style={styles.input} placeholder="Write a task" />
-        <TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          placeholder="Write a task"
+          value={task}
+          onChange={(text) => setTask(text)}
+        />
+        <TouchableOpacity onPress={() => handleAddTask()}>
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
           </View>
@@ -46,28 +65,28 @@ const styles = StyleSheet.create({
   writeTaskWrapper: {
     position: "absolute",
     bottom: 60,
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
     width: 250,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: '#C0C0C0',
+    borderColor: "#C0C0C0",
     borderRadius: 60,
   },
   addWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: '#C0C0C0',
+    borderColor: "#C0C0C0",
     borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
